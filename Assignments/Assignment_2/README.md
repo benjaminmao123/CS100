@@ -1,4 +1,4 @@
-Welcome to BJShell (Ben and Johnathan Shell)
+Welcome to BShell
 
 To install and run the shell type:
 
