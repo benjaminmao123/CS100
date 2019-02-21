@@ -2,7 +2,7 @@ Welcome to BJShell (Ben and Johnathan Shell)
 
 To install and run the shell type:
 
-$ git clone  https://github.com/cs100/cs100-assignment-2-bmao-and-jmura.git <br />
-$ cd cs100-assignment-2-bmao-and-jmura <br />
+$ git clone  https://github.com/benjaminmao123/CS100.git <br />
+$ cd Assignment_2 <br />
 $ make <br />
 $ bin/rshell <br />
