@@ -1,5 +1,5 @@
-# BJShell README
-Welcome to BJShell (Ben and Johnathan Shell)
+# BShell README
+Welcome to BShell
 
 ## Installation:
 To install and run the shell type:
