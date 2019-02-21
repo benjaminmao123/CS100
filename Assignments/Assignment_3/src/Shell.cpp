@@ -33,7 +33,7 @@ void Shell::PrintPrompt(bool &InfoAvailable)
     if (!count)
     {
         std::cout << "\033[H\033[J";
-        std::cout << "Welcome to BJShell (Benjamin and Johnathan Shell)!\n" << "If you want the list of the current built-in commands type 'help'\n";
+        std::cout << "Welcome to BShell!\n" << "If you want the list of the current built-in commands type 'help'\n";
         ++count;
     }
     
