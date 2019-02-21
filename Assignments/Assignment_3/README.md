@@ -44,4 +44,3 @@ Task 6: construct json and README files, and git commit (10%)
 <strong>
 Total: 100%
 </strong>
-<br />
