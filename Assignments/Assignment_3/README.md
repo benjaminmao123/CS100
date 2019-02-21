@@ -31,13 +31,13 @@ Benjamin Mao Complete:
 <br />
 Task 1: Github Setup (10%)
 <br />
-Task 2: "Test" command 1 (for the case "test -e test/file/path", 100%)
+Task 2: "Test" command 1 (for the case "test -e test/file/path", 20%)
 <br />
-Task 3: "Test" command 2 (for the case "[ -e test/file/path ]", 100%)
+Task 3: "Test" command 2 (for the case "[ -e test/file/path ]", 15%)
 <br />
 Task 4: The Precedence Operators (30%);
 <br />
-Task 5: construct test scripts (enough test cases, 100%);
+Task 5: construct test scripts (enough test cases, 15%);
 <br />
 Task 6: construct json and README files, and git commit (10%) 
 <br />
