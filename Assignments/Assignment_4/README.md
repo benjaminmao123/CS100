@@ -63,15 +63,12 @@ would look like:
 - **Benjamin Mao Complete:**
 	- Task 1: Github Setup (10%)
 	- Task 2: Input redirection (For commands contain "<", 20%)
-	- Task 3: output redirection (For commands contain ">" and ">>", 5%)
-	- Task 5: construct test scripts (enough test cases, 15%) <br/>
-	**Total: 50%**
-- **Johnathan Murad Complete:**
-	- Task 3: output redirection (For commands contain ">" and ">>", 15%)
+	- Task 3: output redirection (For commands contain ">" and ">>", 20%)
 	- Task 4: Piping (25%)
+	- Task 5: construct test scripts (enough test cases, 15%) <br/>
 	- Task 6: construct json and README files, and git commit (10%) <br/>
-	 **Total: 50%**
-
+	**Total: 100%**
+	
 ## Known Bugs
 - Using comments within parentheses causes the command to become invalid due to the fact that the ending   	parenthesis gets deleted as a result of our comment algorithm.
 - Using parentheses within quotation marks will cause undefined behavior since our algorithm does not parse quotation marks.
