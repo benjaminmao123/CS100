@@ -16,7 +16,7 @@ public:
     void Run();
     void PrintPrompt(bool &InfoAvailable);
     bool ExecuteCommands();
-	std::shared_ptr<CommandBase> BuildTree(std::vector<std::shared_ptr<Connectors>> &ConnectorList);
+    std::shared_ptr<CommandBase> BuildTree(std::vector<std::shared_ptr<Connectors>> &ConnectorList);
     void CreateCommands();
     
 private:
