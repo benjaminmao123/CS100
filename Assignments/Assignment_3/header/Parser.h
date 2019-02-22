@@ -14,7 +14,7 @@ public:
     Parser();
     Parser(std::string &Input);
     bool ParseInput(std::vector<std::string> &InputVec, std::vector<std::shared_ptr<Connectors>> &ConnectorList);
-	std::vector<std::shared_ptr<Connectors>> ParseConnectors(unsigned int index, std::vector<std::shared_ptr<Connectors>> &ConnectorList);
+    std::vector<std::shared_ptr<Connectors>> ParseConnectors(unsigned int index, std::vector<std::shared_ptr<Connectors>> &ConnectorList);
     void SpaceInput();
     void SplitInput();
     bool ParseQuotations(std::string &TempInput, std::string &Input);
@@ -32,7 +32,7 @@ private:
     std::vector<std::string> InputList;
     std::vector<unsigned int> SavePosition;
     std::vector<std::pair<unsigned int, unsigned int>> SaveQuotation;
-	std::vector<unsigned int> IndexVector;
-	std::vector<std::pair<unsigned int, unsigned int>> ParenthesesLocation;
-	std::stack<std::string> ParenthesesStack;
+    std::vector<unsigned int> IndexVector;
+    std::vector<std::pair<unsigned int, unsigned int>> ParenthesesLocation;
+    std::stack<std::string> ParenthesesStack;
 };
