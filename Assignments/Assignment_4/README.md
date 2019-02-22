@@ -3,7 +3,7 @@ Welcome to BShell
 
 ## Installation:
 To install and run the shell type:
-> $ git clone https://github.com/cs100/cs100-assignment-2-bmao-and-jmura.git <br/>
+> $ git clone https://github.com/benjaminmao123/CS100.git <br/>
 > $ cd cs100-assignment-2-bmao-and-jmura <br/>
 > $ make <br/>
 > $ bin/rshell <br/>
