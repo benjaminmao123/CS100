@@ -32,7 +32,7 @@ private:
     std::vector<std::string> InputList;
     std::vector<unsigned int> SavePosition;
     std::vector<std::pair<unsigned int, unsigned int>> SaveQuotation;
-	std::vector<unsigned int> IndexVector;
-	std::vector<std::pair<unsigned int, unsigned int>> ParenthesesLocation;
-	std::stack<std::string> ParenthesesStack;
+    std::vector<unsigned int> IndexVector;
+    std::vector<std::pair<unsigned int, unsigned int>> ParenthesesLocation;
+    std::stack<std::string> ParenthesesStack;
 };
