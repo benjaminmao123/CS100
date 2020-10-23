@@ -291,6 +291,6 @@ namespace ParserLibrary
         for (const auto& i : toDelete)
             delete i;
 
-		return postfix;
+	return postfix;
     }
 }
