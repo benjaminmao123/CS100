@@ -261,7 +261,7 @@ namespace ParserLibrary
                         break;
                     }
                 }
-                break;
+                    break;
                 default:
                     break;
                 }
