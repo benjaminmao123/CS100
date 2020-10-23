@@ -1,4 +1,4 @@
-# BShell README
+# RShell README
 Welcome to RShell
 
 ## Installation:
