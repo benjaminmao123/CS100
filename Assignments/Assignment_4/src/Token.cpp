@@ -20,18 +20,18 @@ std::unordered_map<Token::TokenType, std::string> Token::typeToStringMap =
     { Token::TokenType::EXIT, "exit" },
     { Token::TokenType::TEST, "test" },
     { Token::TokenType::SEMICOLON, ";" },
-    { Token::TokenType::AND, "&&"},
-    { Token::TokenType::OR, "||"},
-    { Token::TokenType::LEFT_PARENTHESIS, "("},
-    { Token::TokenType::RIGHT_PARENTHESIS, ")"},
-    { Token::TokenType::LEFT_LEGACY_TEST, "["},
-    { Token::TokenType::RIGHT_LEGACY_TEST, "]"},
-    { Token::TokenType::REDIRECTION, "redirection"},
-    { Token::TokenType::PIPE, "|"},
-    { Token::TokenType::INPUT_REDIRECTION, "<"},
-    { Token::TokenType::OUTPUT_REDIRECTION, ">"},
-    { Token::TokenType::OUTPUT_APPEND, ">>"},
-    { Token::TokenType::CHANGE_DIRECTORY, "cd"}
+    { Token::TokenType::AND, "&&" },
+    { Token::TokenType::OR, "||" },
+    { Token::TokenType::LEFT_PARENTHESIS, "(" },
+    { Token::TokenType::RIGHT_PARENTHESIS, ")" },
+    { Token::TokenType::LEFT_LEGACY_TEST, "[" },
+    { Token::TokenType::RIGHT_LEGACY_TEST, "]" },
+    { Token::TokenType::REDIRECTION, "redirection" },
+    { Token::TokenType::PIPE, "|" },
+    { Token::TokenType::INPUT_REDIRECTION, "<" },
+    { Token::TokenType::OUTPUT_REDIRECTION, ">" },
+    { Token::TokenType::OUTPUT_APPEND, ">>" },
+    { Token::TokenType::CHANGE_DIRECTORY, "cd" }
 };
 
 std::unordered_map<std::string, Token::TokenType> Token::stringToTypeMap =
