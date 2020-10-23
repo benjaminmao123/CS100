@@ -55,7 +55,7 @@ bool Executor::operator()(const std::vector<Command*>& postfix)
 
 	if (!result.empty() && result.top())
 	{
-		ret = result.top()->Execute();
+                ret = result.top()->Execute();
 		
 		for (const auto& i : ptrs)
 			delete i;
