@@ -1,61 +1,68 @@
-#include <iostream>
+#include <stack>
 
-#include "../header/Shell.h"
-#include "../header/Command.h"
+#include "../header/Executor.h"
+#include "../header/Connector.h"
 #include "../header/ErrorLibrary.h"
+#include "../header/Command.h"
 
-void Shell::Run()
+bool Executor::operator()(const std::vector<Command*>& postfix)
 {
-    while (true)
+    std::stack<Command*> result;
+    
+    for (const auto& t : postfix)
     {
-        Clear();
-        PrintCommandPrompt();
-        GetCommand();
-        
-        if (!command.empty() &&
-            command.find_first_not_of(' ') != std::string::npos)
+        if (t)
         {
-            ParseCommand();
-            ExecuteCommand();    
+            const Connector* tempConn = dynamic_cast<Connector*>(t);
+
+            if (tempConn)
+            {
+                switch (t->Type())
+                {
+                case Token::TokenType::SEMICOLON:
+                case Token::TokenType::AND:
+                case Token::TokenType::OR:
+                case Token::TokenType::PIPE:
+                case Token::TokenType::INPUT_REDIRECTION:
+                case Token::TokenType::OUTPUT_REDIRECTION:
+                case Token::TokenType::OUTPUT_APPEND:
+                {
+                    Command* rhs = result.top();
+                    result.pop();
+
+                    Command* lhs = result.top();
+                    result.pop();
+
+                    Command* conn = Token::Create(t->Type());
+
+                    conn->Left(lhs);
+                    conn->Right(rhs);
+                    
+                    ptrs.emplace_back(conn);
+                    result.push(conn);
+                    break;
+                }
+                default:
+                    break;
+                }
+            }
+            else
+                result.push(t);
         }
     }
-}
 
-void Shell::PrintCommandPrompt() const
-{
-    std::cout << "$ ";
-}
+    bool ret = false;
 
-void Shell::GetCommand()
-{
-    std::getline(std::cin, command);
-}
-
-void Shell::ParseCommand()
-{
-    postfix = parser(command);
-}
-
-void Shell::ExecuteCommand()
-{
-    if (postfix.empty())
+    if (!result.empty() && result.top())
     {
-        std::cout << "Error: " << 
-            ErrorLibrary::GetErrorMessage() << std::endl;
+        ret = result.top()->Execute();
         
-        ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
-        
-        return;
+        for (const auto& i : ptrs)
+            delete i;
     }
-    
-    executor(postfix);
 
-    for (const auto& i : postfix)
-        delete i;
-}
+    ptrs.clear();
+    std::stack<Command*>().swap(result);
 
-void Shell::Clear()
-{
-    command.clear();
-    postfix.clear();
+    return ret;
 }
