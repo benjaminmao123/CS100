@@ -6,17 +6,17 @@
 #include "../header/Command.h"
 
 Command::Command(TokenType type,
-	const std::vector<std::string>& args,
-	Command* lhs,
-	Command* rhs) :
-	Token(type, lhs, rhs),
-	args(args)
+    const std::vector<std::string>& args,
+    Command* lhs,
+    Command* rhs) :
+    Token(type, lhs, rhs),
+    args(args)
 { }
 
 Command::Command(TokenType type, 
-	Command* lhs, 
-	Command* rhs) :
-	Command(type, std::vector<std::string>(), lhs, rhs)
+    Command* lhs, 
+    Command* rhs) :
+    Command(type, std::vector<std::string>(), lhs, rhs)
 { }
 
 Command::~Command()
@@ -24,57 +24,57 @@ Command::~Command()
 
 bool Command::Execute()
 {
-	if (args.empty())
-		return false;
+    if (args.empty())
+        return false;
 
-	std::vector<char*> args;
+    std::vector<char*> args;
 
-	for (const auto& token : GetArgs())
-		args.emplace_back(const_cast<char*>(token.c_str()));
+    for (const auto& token : GetArgs())
+        args.emplace_back(const_cast<char*>(token.c_str()));
 
-	args.emplace_back(nullptr);
+    args.emplace_back(nullptr);
 
-	pid_t pid = fork();
+    pid_t pid = fork();
 
-	if (pid > 0)
-	{
-		int status;
+    if (pid > 0)
+    {
+        int status;
 
-		if (waitpid(pid, &status, 0) == -1)
-		{
-			perror("wait");
+        if (waitpid(pid, &status, 0) == -1)
+        {
+            perror("wait");
 
-			return false;
-		}
+            return false;
+        }
 
-		if (WEXITSTATUS(status))
-			return false;
-	}
-	else if (!pid)
-	{
-		if (execvp(args[0], args.data()) == -1)
-		{
-			std::cout << "Shell: " << args[0] << ": " << "command not found" << std::endl;
+        if (WEXITSTATUS(status))
+            return false;
+    }
+    else if (!pid)
+    {
+        if (execvp(args[0], args.data()) == -1)
+        {
+            std::cout << "Shell: " << args[0] << ": " << "command not found" << std::endl;
 
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		perror("fork");
+            exit(EXIT_FAILURE);
+        }
+    }
+    else
+    {
+        perror("fork");
 
-		return false;
-	}
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 void Command::SetArgs(const std::vector<std::string>& args)
 {
-	this->args = args;
+    this->args = args;
 }
 
 const std::vector<std::string>& Command::GetArgs() const
 {
-	return args;
+    return args;
 }
