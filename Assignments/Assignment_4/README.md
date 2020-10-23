@@ -37,6 +37,11 @@ The output is a nested command that is run by our executor.
 So for example 
 > echo a && echo b | tr A-Z a-z > test.txt && cat < test.txt 
 
+would be converted into
+> echo a echo b tr A-Z a-z test.txt cat test.txt && | > && <
+
+which after being converted into reverse polish notation would look like:
+
 would look like:
 > Root: "|" <br/>
 > Root->lhs: "&&" <br/>
