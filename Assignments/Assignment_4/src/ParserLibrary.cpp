@@ -1,4 +1,6 @@
 #include <stack>
+#include <regex>
+#include <sstream>
 
 #include "../header/ParserLibrary.h"
 #include "../header/Connector.h"
@@ -9,17 +11,28 @@
 
 namespace ParserLibrary
 {
-    std::vector<std::string> Tokenize(const std::string& input)
+    std::vector<std::string> Tokenize(const std::string& input,
+        const std::string& regex)
     {
-        std::istringstream iss(input);
-        
-        std::string token;
+        std::regex rx(regex);
+        std::sregex_token_iterator srti(input.begin(), input.end(), rx, { -1, 0 });
         std::vector<std::string> tokens;
-        
-        while (iss >> token)
-            tokens.emplace_back(token);
-            
-        return tokens;
+        std::remove_copy_if(srti, std::sregex_token_iterator(),
+            std::back_inserter(tokens),
+            [](std::string const& s) { return s.empty(); });
+
+        std::vector<std::string> result;
+
+        for (auto& t : tokens)
+        {
+            std::istringstream iss(t);
+            std::string temp;
+
+            while (iss >> temp)
+                result.emplace_back(temp);
+        }
+
+        return result;
     }    
     
     std::vector<Command*> Tokenize(const std::vector<std::string>& input)

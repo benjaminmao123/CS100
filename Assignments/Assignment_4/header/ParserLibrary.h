@@ -1,8 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <sstream>
-#include <initializer_list>
 #include <string>
 
 class Command;
@@ -15,7 +13,8 @@ namespace ParserLibrary
 		EXPECT_CONNECTOR
 	};
 
-    std::vector<std::string> Tokenize(const std::string& input);
+    std::vector<std::string> Tokenize(const std::string& input,
+        const std::string& regex);
     std::vector<Command*> Tokenize(const std::vector<std::string>& input);
     std::string ParseComment(const std::string& input, 
         const std::string& comment);

@@ -11,6 +11,8 @@ class Command;
 class Shell
 {
 public:
+    Shell();
+
     void Run();
 
 private:
