@@ -137,8 +137,8 @@ namespace ParserLibrary
 
     std::vector<Command*> GeneratePostfix(std::vector<Command*>& infix)
     {
-		ShuntingState state = ShuntingState::EXPECT_COMMAND;
-		ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
+	ShuntingState state = ShuntingState::EXPECT_COMMAND;
+	ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
 
         auto onError = [&](ErrorLibrary::ErrorState state)
         {
@@ -150,8 +150,8 @@ namespace ParserLibrary
             return std::vector<Command*>();
         };
 
-		std::stack<Command*> operators;
-		std::vector<Command*> postfix;
+	std::stack<Command*> operators;
+	std::vector<Command*> postfix;
         std::vector<Command*> toDelete;
 
         for (auto& t : infix)
