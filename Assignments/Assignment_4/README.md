@@ -1,5 +1,5 @@
 # BShell README
-Welcome to BShell
+Welcome to RShell
 
 ## Installation:
 To install and run the shell type:
@@ -9,7 +9,7 @@ To install and run the shell type:
 > $ bin/rshell <br/>
 
 ## Summary
-BJShell is a custom linux shell that takes in inputs from the command line and runs the command.
+RShell is a custom linux shell that takes in inputs from the command line and runs the command.
 
 Our current implementation supports the commands:
 - **Connectors:** 
@@ -30,10 +30,9 @@ Our current implementation supports the commands:
     - "test"
         - For the test built-in command, we support the bracket notation as well e.g. "[ -e src/main.cpp ]"
 
-For our parsing, our algorithm involves tokenzing the input and pushing it into an input vector. This input vector would then be used to parse for connectors, parentheses, and redirection operators. After all the parsing is done, we create commands by creating a Single Command List queue and pushing ConcreteSingleCommand objects into it. A ConcreteSingleCommand object is created by using connectors and redirection operators as a divider. So for example: 
-> echo a && echo b 
-
-would generate two ConcreteSingleCommand objects, "echo a" and "echo b" with the connector "&&" as the separator.  Our algorithm would then recursively generate a tree of commands with sublists and then execute each command in terms of precedence.
+For our parsing, we first tokenized the input into a vector of strings and then converted them into Command token objects.
+We then run shunting yard on the tokens to create a vector of postfix tokens. This vector is then converted into reverse polish notation.
+The output is a nested command that is run by our executor.
 
 So for example 
 > echo a && echo b | tr A-Z a-z > test.txt && cat < test.txt 
@@ -70,7 +69,6 @@ would look like:
 	**Total: 100%**
 	
 ## Known Bugs
-- Using comments within parentheses causes the command to become invalid due to the fact that the ending   	parenthesis gets deleted as a result of our comment algorithm.
 - Using parentheses within quotation marks will cause undefined behavior since our algorithm does not parse quotation marks.
 - Using connectors within quotation marks will cause undefined behavior since our algorithm does not parse quotation marks.
 - Escape codes will cause errors as we have not implemented signal handling yet.
