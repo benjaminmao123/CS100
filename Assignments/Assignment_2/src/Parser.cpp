@@ -2,8 +2,7 @@
 
 #include "../header/Parser.h"
 #include "../header/ParserLibrary.h"
-
-class Command;
+#include "../header/Command.h"
 
 std::vector<Command*> Parser::operator()(const std::string& command) const
 {

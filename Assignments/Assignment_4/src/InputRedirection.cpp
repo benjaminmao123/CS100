@@ -6,7 +6,7 @@
 
 InputRedirection::InputRedirection(Command* lhs,
     Command* rhs) :
-    Connector(Token::TokenType::PIPE, lhs, rhs)
+    Connector(Token::TokenType::INPUT_REDIRECTION, lhs, rhs)
 { }
 
 bool InputRedirection::Execute()

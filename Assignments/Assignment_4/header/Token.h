@@ -26,7 +26,8 @@ public:
         PIPE,
         INPUT_REDIRECTION,
         OUTPUT_REDIRECTION,
-        OUTPUT_APPEND
+        OUTPUT_APPEND,
+        CHANGE_DIRECTORY
     };
 
     Token(TokenType type = TokenType::NONE,

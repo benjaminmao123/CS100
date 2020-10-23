@@ -11,8 +11,13 @@ void Shell::Run()
         Clear();
         PrintCommandPrompt();
         GetCommand();
-        ParseCommand();
-        ExecuteCommand();
+        
+        if (!command.empty() &&
+            command.find_first_not_of(' ') != std::string::npos)
+        {
+            ParseCommand();
+            ExecuteCommand();    
+        }
     }
 }
 
@@ -34,7 +39,14 @@ void Shell::ParseCommand()
 void Shell::ExecuteCommand()
 {
     if (postfix.empty())
+    {
+        std::cout << "Error: " << 
+            ErrorLibrary::GetErrorMessage() << std::endl;
+        
+        ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
+        
         return;
+    }
     
     executor(postfix);
 

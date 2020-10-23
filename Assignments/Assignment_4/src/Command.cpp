@@ -54,8 +54,26 @@ bool Command::Execute()
 	}
 	else if (!pid)
 	{
+		int oldfdout = dup(1);
+		
+		if (dup2(fdin, STDIN_FILENO) == -1)
+		{
+			perror("dup2");
+			
+            return false;
+		}
+		
+        if (dup2(fdout, STDOUT_FILENO) == -1)
+        {
+            perror("dup2");
+            
+            return false;
+        }		
+		
 		if (execvp(args[0], args.data()) == -1)
 		{
+			dup2(oldfdout, STDOUT_FILENO);
+			
 			std::cout << "Shell: " << args[0] << ": " << "command not found" << std::endl;
 
 			exit(EXIT_FAILURE);

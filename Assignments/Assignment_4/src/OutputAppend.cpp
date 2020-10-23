@@ -6,7 +6,7 @@
 
 OutputAppend::OutputAppend(Command* lhs,
     Command* rhs) :
-    Connector(Token::TokenType::PIPE, lhs, rhs)
+    Connector(Token::TokenType::OUTPUT_APPEND, lhs, rhs)
 { }
 
 bool OutputAppend::Execute()

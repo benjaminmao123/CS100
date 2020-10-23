@@ -22,6 +22,10 @@ bool Executor::operator()(const std::vector<Command*>& postfix)
 				case Token::TokenType::SEMICOLON:
 				case Token::TokenType::AND:
 				case Token::TokenType::OR:
+				case Token::TokenType::PIPE:
+				case Token::TokenType::INPUT_REDIRECTION:
+				case Token::TokenType::OUTPUT_REDIRECTION:
+				case Token::TokenType::OUTPUT_APPEND:
 				{
 					Command* rhs = result.top();
 					result.pop();

@@ -11,8 +11,13 @@ void Shell::Run()
         Clear();
         PrintCommandPrompt();
         GetCommand();
-        ParseCommand();
-        ExecuteCommand();
+        
+        if (!command.empty() &&
+            command.find_first_not_of(' ') != std::string::npos)
+        {
+            ParseCommand();
+            ExecuteCommand();    
+        }
     }
 }
 

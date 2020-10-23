@@ -45,6 +45,7 @@ namespace ParserLibrary
                         result.emplace_back(cmd);
                     }
                     break;
+                case Token::TokenType::CHANGE_DIRECTORY:
                 case Token::TokenType::TEST:
                     cmd = Token::Create(cmdType);
 
@@ -70,6 +71,7 @@ namespace ParserLibrary
             {
             case Token::TokenType::NONE:
             case Token::TokenType::TEST:
+            case Token::TokenType::CHANGE_DIRECTORY:
                 args.emplace_back(s);
                 break;
             case Token::TokenType::SEMICOLON:
@@ -165,6 +167,7 @@ namespace ParserLibrary
                     case Token::TokenType::COMMAND:
                     case Token::TokenType::EXIT:
                     case Token::TokenType::TEST:
+                    case Token::TokenType::CHANGE_DIRECTORY:
                         postfix.emplace_back(t);
                         state = ShuntingState::EXPECT_CONNECTOR;
                         break;
@@ -198,6 +201,7 @@ namespace ParserLibrary
                     case Token::TokenType::TEST:
                     case Token::TokenType::LEFT_LEGACY_TEST:
                     case Token::TokenType::LEFT_PARENTHESIS:
+                    case Token::TokenType::CHANGE_DIRECTORY:
                         return onError(ErrorLibrary::ErrorState::EXPECT_CONNECTOR);
                     case Token::TokenType::CONNECTOR:
                     case Token::TokenType::SEMICOLON:

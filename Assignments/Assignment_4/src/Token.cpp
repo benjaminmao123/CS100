@@ -10,6 +10,7 @@
 #include "../header/InputRedirection.h"
 #include "../header/OutputRedirection.h"
 #include "../header/OutputAppend.h"
+#include "../header/ChangeDirectory.h"
 
 std::unordered_map<Token::TokenType, std::string> Token::typeToStringMap =
 {
@@ -29,7 +30,8 @@ std::unordered_map<Token::TokenType, std::string> Token::typeToStringMap =
     { Token::TokenType::PIPE, "|"},
     { Token::TokenType::INPUT_REDIRECTION, "<"},
     { Token::TokenType::OUTPUT_REDIRECTION, ">"},
-    { Token::TokenType::OUTPUT_APPEND, ">>"}
+    { Token::TokenType::OUTPUT_APPEND, ">>"},
+    { Token::TokenType::CHANGE_DIRECTORY, "cd"}
 };
 
 std::unordered_map<std::string, Token::TokenType> Token::stringToTypeMap =
@@ -46,7 +48,8 @@ std::unordered_map<std::string, Token::TokenType> Token::stringToTypeMap =
     { "|", Token::TokenType::PIPE },
     { "<", Token::TokenType::INPUT_REDIRECTION },
     { ">", Token::TokenType::OUTPUT_REDIRECTION },
-    { ">>", Token::TokenType::OUTPUT_APPEND }
+    { ">>", Token::TokenType::OUTPUT_APPEND },
+    { "cd", Token::TokenType::CHANGE_DIRECTORY }
 };
 
 Token::Token(TokenType type,
@@ -136,7 +139,9 @@ Command* Token::Create(TokenType type)
     case TokenType::OUTPUT_REDIRECTION:
         return new OutputRedirection();
     case TokenType::OUTPUT_APPEND:
-        return new OutputAppend();        
+        return new OutputAppend();     
+    case TokenType::CHANGE_DIRECTORY:
+        return new ChangeDirectory();               
     default:
         break;
     }

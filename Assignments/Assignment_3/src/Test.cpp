@@ -31,7 +31,16 @@ bool Test::Execute()
 				break;
 		}
 		
-		std::string path = *(flagPos + 1);
+		std::string path;
+		
+		if ((flagPos + 1) != GetArgs().end())
+			path = *(flagPos + 1);
+		else
+		{
+			std::cout << "Shell: syntax error: test: missing path name\n";
+			
+			return false;
+		}
 			
 		if (*flagPos == "-e")
 		{
