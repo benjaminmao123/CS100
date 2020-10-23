@@ -149,7 +149,7 @@ namespace ParserLibrary
 		std::vector<Command*> postfix;
         std::vector<Command*> toDelete;
 
-        for (auto& t : infix)
+        for (const auto& t : infix)
         {
             if (t)
             {
