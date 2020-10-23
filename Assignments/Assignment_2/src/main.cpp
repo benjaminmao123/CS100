@@ -1,10 +1,10 @@
-#include "Shell.h"
+#include "../header/Shell.h"
 
 int main()
 {
-    Shell Shell;
+    Shell shell;
     
-    Shell.Run();
+    shell.Run();
     
     return 0;
 }

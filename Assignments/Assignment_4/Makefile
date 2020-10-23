@@ -1,5 +1,5 @@
 CC = g++
-CC_FLAGS = -Iinclude -Wall -Werror -ansi -pedantic -std=c++11
+CC_FLAGS = -Iinclude -Wall -Werror -ansi -pedantic -std=c++14
 
 TARGET = ./bin/rshell
 SOURCES = $(wildcard src/*.cpp)
