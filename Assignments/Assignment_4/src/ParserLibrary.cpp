@@ -81,16 +81,11 @@ namespace ParserLibrary
             case Token::TokenType::INPUT_REDIRECTION:
             case Token::TokenType::OUTPUT_REDIRECTION:
             case Token::TokenType::OUTPUT_APPEND:
+            case Token::TokenType::RIGHT_PARENTHESIS:
                 createCommand();
-                result.emplace_back(Token::Create(tokenType));
-                break;
             case Token::TokenType::EXIT:
             case Token::TokenType::LEFT_PARENTHESIS:
             case Token::TokenType::LEFT_LEGACY_TEST:
-                result.emplace_back(Token::Create(tokenType));
-                break;
-            case Token::TokenType::RIGHT_PARENTHESIS:
-                createCommand();
                 result.emplace_back(Token::Create(tokenType));
                 break;
             case Token::TokenType::RIGHT_LEGACY_TEST:
@@ -137,8 +132,8 @@ namespace ParserLibrary
 
     std::vector<Command*> GeneratePostfix(std::vector<Command*>& infix)
     {
-	ShuntingState state = ShuntingState::EXPECT_COMMAND;
-	ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
+		ShuntingState state = ShuntingState::EXPECT_COMMAND;
+		ErrorLibrary::state = ErrorLibrary::ErrorState::NONE;
 
         auto onError = [&](ErrorLibrary::ErrorState state)
         {
@@ -150,11 +145,11 @@ namespace ParserLibrary
             return std::vector<Command*>();
         };
 
-	std::stack<Command*> operators;
-	std::vector<Command*> postfix;
+		std::stack<Command*> operators;
+		std::vector<Command*> postfix;
         std::vector<Command*> toDelete;
 
-        for (const auto& t : infix)
+        for (auto& t : infix)
         {
             if (t)
             {
@@ -178,20 +173,19 @@ namespace ParserLibrary
                     case Token::TokenType::PIPE:
                     case Token::TokenType::INPUT_REDIRECTION:
                     case Token::TokenType::OUTPUT_REDIRECTION:
-                    case Token::TokenType::OUTPUT_APPEND:                                
+                    case Token::TokenType::OUTPUT_APPEND:          
+                    case Token::TokenType::RIGHT_LEGACY_TEST:
+                    case Token::TokenType::RIGHT_PARENTHESIS:                    
                         return onError(ErrorLibrary::ErrorState::EXPECT_COMMAND);
                     case Token::TokenType::LEFT_LEGACY_TEST:
                     case Token::TokenType::LEFT_PARENTHESIS:
                         operators.push(t);
                         break;
-                    case Token::TokenType::RIGHT_LEGACY_TEST:
-                    case Token::TokenType::RIGHT_PARENTHESIS:
-                        return onError(ErrorLibrary::ErrorState::EXPECT_COMMAND);
                     default:
                         break;
                     }
                 }
-                    break;
+                break;
                 case ShuntingState::EXPECT_CONNECTOR:
                 {
                     switch (t->Type())
@@ -291,6 +285,6 @@ namespace ParserLibrary
         for (const auto& i : toDelete)
             delete i;
 
-	return postfix;
+		return postfix;
     }
 }
