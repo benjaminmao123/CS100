@@ -1,9 +1,9 @@
 #include "../header/Parenthesis.h"
 
 LeftParenthesis::LeftParenthesis() :
-    Command(Token::TokenType::LEFT_PARENTHESIS, nullptr, nullptr)
+    Command(Token::TokenType::LEFT_PARENTHESIS)
 { }
 
 RightParenthesis::RightParenthesis() :
-    Command(Token::TokenType::RIGHT_PARENTHESIS, nullptr, nullptr)
+    Command(Token::TokenType::RIGHT_PARENTHESIS)
 { }
