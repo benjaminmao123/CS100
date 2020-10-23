@@ -12,8 +12,8 @@ std::unordered_map<Token::TokenType, std::string> Token::typeToStringMap =
     { Token::TokenType::CONNECTOR, "connector" },
     { Token::TokenType::EXIT, "exit" },
     { Token::TokenType::SEMICOLON, ";" },
-    { Token::TokenType::AND, "&&"},
-    { Token::TokenType::OR, "||"}
+    { Token::TokenType::AND, "&&" },
+    { Token::TokenType::OR, "||" }
 };
 
 std::unordered_map<std::string, Token::TokenType> Token::stringToTypeMap =

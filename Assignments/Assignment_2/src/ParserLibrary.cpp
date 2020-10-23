@@ -138,7 +138,7 @@ namespace ParserLibrary
                         break;
                     }
                 }
-                break;
+                    break;
                 case ShuntingState::EXPECT_CONNECTOR:
                 {
                     switch (t->Type())
@@ -163,7 +163,7 @@ namespace ParserLibrary
                         break;
                     }
                 }
-                break;
+                    break;
                 default:
                     break;
                 }
